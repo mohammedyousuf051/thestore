@@ -1,0 +1,7 @@
+asgiref==3.3.1
+Django==2.2.17
+django-cors-headers==3.6.0
+django-rest-framework-auth==1.0.0
+djangorestframework==3.12.2
+pytz==2020.4
+sqlparse==0.4.1

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="../../static/js/script.js"></script>
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2wwR9IunLoFKORt3jUUootW8Z8wj1nGk"
+      defer
+    ></script>
+
+<style>
+/*.item1 { grid-area: header; }
+.item2 { grid-area: right; }
+.item3 { grid-area: main; }
+.item4 { grid-area: right; }
+.item5 { grid-area: footer; }*/
+body{
+  overflow-y: auto;
+}
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'menu main main main right right'
+    'menu footer footer footer footer footer';
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+.item1 img{
+      width: 74%;
+    height: 295px !important;
+    float: left;
+    opacity: 0.5;
+}
+.item1 a{
+  float: left;
+margin-left: 68px;
+    font-size: 71px;
+    color: white;
+    text-decoration: none;
+}
+.item1 h5{
+  font-size: 40px;
+  margin-top:50px;
+}
+.item1{
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  background-color: #5b5b62;
+}
+.item2{
+      position: fixed;
+    left: 0%;
+    width: 50%;
+    top: 295px;
+    background-color: white;
+    height: 184px;
+}
+.item2 h2,p{
+  padding-left: 20px;
+}
+.item2 h2
+{
+border-bottom: 1px solid lightgrey;
+padding-bottom: 5px;
+}
+.galtab{
+  height: 150px;
+  overflow: auto;
+}
+/*.item6 h2
+{
+border-bottom: 1px solid lightgrey;
+padding-bottom: 5px;
+}*/
+.item4 h2
+{
+border-bottom: 1px solid lightgrey;
+padding-bottom: 5px;
+}
+.item3 h2
+{
+border-bottom: 1px solid lightgrey;
+padding-bottom: 5px;
+}
+.item3{
+      position: fixed;
+    left: 0%;
+    width: 50%;
+    bottom: 0%;
+    background-color: white;
+    height: 125px;
+}
+.item3 h2,.showall{
+  padding-left: 20px;
+}
+.item3 p{
+      float: left;
+    border: 1px solid;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #aec5e7;
+    margin-left: 5px;
+    color: white;
+}
+.item4{
+      position: fixed;
+    right: 0%;
+    width: 50%;
+    top: 295px;
+    background-color: white;
+    height: 250px;
+}
+.item4 h2,table{
+  padding-left: 20px;
+}
+.item4 table{
+margin-left: 23px;
+}
+.item4 table tr td{
+  padding: 5px;
+}
+.item5{
+      position: fixed;
+    right: 0%;
+    width: 50%;
+    bottom: 0px;
+    background-color: white;
+    height: 250px;
+}
+.item5 h2{
+  padding-left: 20px;
+
+
+}
+/*.item5 span{
+  margin-left: 20%;
+  font-size: 15px;
+
+}*/
+.addp{
+  margin-top: -37px;
+    margin-left: 41%
+}
+#map_store {
+  height: 100%;
+}
+.item6{
+   position: fixed;
+    left: 0%;
+    width: 50%;
+    top: 479px;
+    background-color: white;
+    height: 184px;
+    overflow: auto;
+}
+.item6 h2,span{
+  padding-left: 20px;
+  float: left;
+}
+.item6 span{
+  margin-top: 24px;
+}
+.item6 #allphotos{
+     display: block;
+    position: absolute;
+    margin-top: 43px;
+    border-top: 1px solid lightgrey;
+
+}
+#allphotos a,img{
+
+  width: 126px;
+    height: 93px;
+    float: left;
+    padding-left: 10px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+#singleimg img{
+      width: 100%;
+    height: 100%;
+}
+.modal-body{
+      height: 393px;
+}
+.store-container .item1,.item2,.item3,.item4,.item5,.item6{
+  border:5px solid #eaeaea;
+}
+html{
+  background-color: #eaeaea;
+}
+.backd{
+position:fixed;
+top:2%;
+right:2%;
+color:white;
+cursor:pointer;
+font-size:15px;
+}
+</style>
+</head>
+<body>
+
+
+<div class="store-container" id="storepage">
+
+</div>
+<a class="backd" href="../dashboard/">Back</a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" id="imgtitle"></h4>
+        </div>
+        <div class="modal-body" id="singleimg">
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<title></title>
+</head>
+<style>
+	.signup-form{
+		position: fixed;
+		top: 30%;
+		left: 40%;
+		background-color: white;
+		padding: 30px;
+		border:1px solid;
+	}
+	.signup-form input{
+		padding: 10px;
+		margin-top: 15px;
+		display: block;
+	}
+	button{
+		padding: 10px;
+		margin-top: 15px;
+		color: white;
+		background-color: #32d191;
+		border:none;
+		/*margin-left: 10px;*/
+	}
+</style>
+<body>
+<div class="signup-form">
+	<h3>Login</h3>
+	<input type="text" id="username" name="" placeholder="username">
+	<input type="password" id="password" name="" placeholder="password">
+
+	<!-- <input type="text" id="pic" name="" placeholder="pic"> -->
+	<button onclick="sendthis()">Login</button>
+	<a href="../signup/">sign in</a>
+</div>
+
+<script>
+	var loginresp;
+	function sendthis(){
+		var items = {
+			"username": $("#username").val(),
+			"password": $("#password").val(),
+		}
+		console.log(items);
+		$.ajax({
+					  url:"http://127.0.0.1:8000/user/login/",
+					  type:"POST",
+					  contentType: "application/json",
+					  data:JSON.stringify(items),
+					  dataType: "json",
+					  success: function(res){
+
+					    loginresp = res;
+					    console.log(loginresp);
+					    localStorage.setItem("username",loginresp["user"])
+					    window.location.href="../dashboard/";
+					  },
+					  error: function(e) {
+					    console.log(e);
+					  },
+					});
+	}
+</script>
+</body>
+</html>
